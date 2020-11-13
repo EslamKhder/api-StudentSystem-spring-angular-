@@ -14,6 +14,7 @@ export class StudentsComponent implements OnInit {
   constructor(private studentService: StudentService) {
   }
   ngOnInit(): void {
+    this.getStudents();
   }
 
   getStudents(){
