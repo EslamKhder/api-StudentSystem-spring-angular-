@@ -7,8 +7,6 @@ export class Student {
   address: string;
   dateCreated: Date;
   dateUpdated: Date;
-
-
   constructor(id: number, fullName: string, gender: string, age: string, phone: string, address: string, dateCreated: Date, dateUpdated: Date) {
     this.id = id;
     this.fullName = fullName;
