@@ -15,9 +15,10 @@ public class Student {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "full-name")
+    @Column(name = "full_name")
     private String fullName;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
 
