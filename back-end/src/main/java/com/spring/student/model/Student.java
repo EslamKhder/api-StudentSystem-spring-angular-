@@ -1,12 +1,17 @@
 package com.spring.student.model;
 
 import com.spring.student.model.enums.Gender;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
 import java.util.Date;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "student")
 public class Student {
 
