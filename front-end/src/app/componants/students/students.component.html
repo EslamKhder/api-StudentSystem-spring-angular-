@@ -8,17 +8,16 @@
     <th scope="col">Age</th>
     <th scope="col">Address</th>
     <th scope="col">Options</th>
-
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mohamed Ahmed</td>
-    <td>01113903660</td>
-    <td>MALE</td>
-    <td>20</td>
-    <td>Shibeen</td>
+  <tr *ngFor="let stus of students">
+    <th scope="row">{{stus.id}}</th>
+    <td>{{stus.fullName}}</td>
+    <td>{{stus.phone}}</td>
+    <td>{{stus.gender}}</td>
+    <td>{{stus.age}}</td>
+    <td>{{stus.address}}</td>
     <td>
       <button class="btn btn-success" routerLink="/control">UpDate</button>
       <button class="btn btn-primary">Delete</button>

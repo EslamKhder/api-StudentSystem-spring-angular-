@@ -8,6 +8,7 @@ import { RegiserComponent } from './componants/regiser/regiser.component';
 import { StudentsComponent } from './componants/students/students.component';
 import { OptionsComponent } from './componants/options/options.component';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {path: 'register', component: RegiserComponent},
@@ -28,7 +29,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
