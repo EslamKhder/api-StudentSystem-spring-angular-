@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './componants/header/header.component';
 import { FooterComponent } from './componants/footer/footer.component';
 import { RegiserComponent } from './componants/regiser/regiser.component';
+import { StudentsComponent } from './componants/students/students.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { RegiserComponent } from './componants/regiser/regiser.component';
     HeaderComponent,
     FooterComponent,
     RegiserComponent,
+    StudentsComponent,
   ],
   imports: [
     BrowserModule
