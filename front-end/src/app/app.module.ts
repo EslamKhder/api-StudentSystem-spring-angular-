@@ -13,6 +13,9 @@ const routes: Routes = [
   {path: 'register', component: RegiserComponent},
   {path: 'control', component: OptionsComponent},
   {path: 'students', component: StudentsComponent},
+  {path: '', component: StudentsComponent},
+  {path: '**', component: StudentsComponent},
+
 ];
 @NgModule({
   declarations: [
