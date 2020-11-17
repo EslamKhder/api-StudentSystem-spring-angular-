@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RouteActivatedServiceService } from './route-activated-service.service';
+import { RouteActivatedService } from './route-activated-service.service';
 
 describe('RouteActivatedServiceService', () => {
-  let service: RouteActivatedServiceService;
+  let service: RouteActivatedService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RouteActivatedServiceService);
+    service = TestBed.inject(RouteActivatedService);
   });
 
   it('should be created', () => {
