@@ -23,7 +23,7 @@ export class RegiserComponent implements OnInit {
   }
   OnSubmit() {
     this.loginService.login(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
-    //console.log(this.logInFormGroup.get('admin').value.userName)
-    //console.log(this.logInFormGroup.get('admin').value.password)
+    console.log(this.logInFormGroup.get('admin').value.userName)
+    console.log(this.logInFormGroup.get('admin').value.password)
   }
 }
