@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {FormBuilder, FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-regiser',
   templateUrl: './regiser.component.html',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegiserComponent implements OnInit {
 
-  constructor() { }
+  logInFormGroup: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.logInFormGroup = this.formBuilder.group({
+      admin: this.formBuilder.group({
+        userName: [''],
+        password: ['']
+      })
+    });
   }
-
 }
