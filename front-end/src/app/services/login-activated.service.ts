@@ -13,9 +13,9 @@ export class LoginActivatedService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.serviceLogin.isLogin()){
+      this.route.navigateByUrl('/students');
       return false;
     }
-    this.route.navigateByUrl('/students');
     return true;
   }
 }
