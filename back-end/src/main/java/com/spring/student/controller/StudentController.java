@@ -38,4 +38,12 @@ public class StudentController {
         return studentService.saveStudent(student);
     }
 
+    // http://localhost:8080/system/students?id=12
+    @PutMapping("students")
+    public Student editStudent(@RequestBody Student student,@RequestParam Long id){
+        student.setId(id);
+        return studentService.saveStudent(student);
+    }
+
+
 }
