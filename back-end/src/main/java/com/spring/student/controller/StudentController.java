@@ -1,12 +1,16 @@
 package com.spring.student.controller;
 
+import com.spring.student.model.Student;
 import com.spring.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
+@RequestMapping("system/")
 public class StudentController {
 
     private StudentService studentService;
@@ -14,5 +18,17 @@ public class StudentController {
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
+    }
+
+    // http://localhost:8080/system/students
+    @GetMapping("students")
+    public List<Student> getStudents(){
+        return studentService.getStudents();
+    }
+
+    // http://localhost:8080/system/student?id=12
+    @GetMapping("student")
+    public Student getStudentById (@RequestParam Long id){
+        return studentService.getStudentById(id);
     }
 }

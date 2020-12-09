@@ -1,8 +1,12 @@
 package com.spring.student.service;
 
 import com.spring.student.doa.StudentRepository;
+import com.spring.student.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -11,5 +15,12 @@ public class StudentService {
     @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
+    }
+
+    public List<Student> getStudents(){
+        return studentRepository.findAll();
+    }
+    public Student getStudentById (Long id){
+        return studentRepository.findById(id).get();
     }
 }
