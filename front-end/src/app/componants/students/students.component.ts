@@ -22,11 +22,4 @@ export class StudentsComponent implements OnInit {
       data => this.students = data
     );
   }
-
-  deleteStudemt(id: number) {
-    alert(id);
-    this.studentService.removeStudents(id).subscribe(
-      data => console.log(data)
-    );
-  }
 }
