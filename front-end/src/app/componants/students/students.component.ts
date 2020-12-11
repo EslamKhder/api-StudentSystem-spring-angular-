@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StudentService} from '../../services/student.service';
 import {Student} from '../../model/student';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -10,11 +11,12 @@ import {Student} from '../../model/student';
 export class StudentsComponent implements OnInit {
 
   students: Student[];
+  message: String;
 
   constructor(private studentService: StudentService) {
   }
   ngOnInit(): void {
-    this.getStudents();
+      this.getStudents();
   }
 
   getStudents(){
@@ -22,4 +24,13 @@ export class StudentsComponent implements OnInit {
       data => this.students = data
     );
   }
+  removeStudent(id: number){
+    this.studentService.removeStudent(id).subscribe(
+      response => {
+        this.getStudents(),
+        this.message = `success delete id ${id}`
+      }
+    );
+  }
+
 }
