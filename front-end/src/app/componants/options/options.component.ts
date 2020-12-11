@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-options',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OptionsComponent implements OnInit {
 
-  constructor() { }
+  studentGroub: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.studentGroub = this.formBuilder.group({
+      student: this.formBuilder.group({
+        userName: ['fullname'],
+        age: ['age'],
+        address: ['address'],
+        phone: ['phone'],
+        gender: ["gender"]
+      })
+    })
   }
 
+  done() {
+
+  }
 }
