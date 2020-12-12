@@ -4,27 +4,27 @@
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="userName"  type="text" class="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="addon-wrapping">
+      <input value="{{myStudent.fullName}}" formControlName="userName"  type="text" class="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="addon-wrapping">
     </div>
 
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="age" type="text" class="form-control" placeholder="Age" aria-label="Password" aria-describedby="addon-wrapping">
+      <input [value]="myStudent.age" formControlName="age" type="text" class="form-control" placeholder="Age" aria-label="Password" aria-describedby="addon-wrapping">
     </div>
 
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="address"  type="text" class="form-control" placeholder="Address" aria-label="Username" aria-describedby="addon-wrapping">
+      <input [value]="myStudent.address" formControlName="address"  type="text" class="form-control" placeholder="Address" aria-label="Username" aria-describedby="addon-wrapping">
     </div>
 
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="phone" type="text" class="form-control" placeholder="Phone" aria-label="Password" aria-describedby="addon-wrapping">
+      <input [value]="myStudent.phone" formControlName="phone" type="text" class="form-control" placeholder="Phone" aria-label="Password" aria-describedby="addon-wrapping">
     </div>
-    <select formControlName="gender" class="form-select" aria-label="Default select example">
+    <select [value]="myStudent.gender" formControlName="gender" class="form-select" aria-label="Default select example">
       <option value="MALE">MALE</option>
       <option value="FEMALE">FEMALE</option>
     </select>
