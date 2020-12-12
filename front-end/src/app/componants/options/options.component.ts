@@ -20,7 +20,6 @@ export class OptionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
-    alert(this.id)
     if(this.id != 0){
       this.serviceStudent.getStudent(this.id).subscribe(
         response =>
@@ -53,12 +52,21 @@ export class OptionsComponent implements OnInit {
     return this.studentGroub.get("student").value.gender;
   }
   done() {
-    const stu = new Student(-1,this.getUserName(),this.getGender(),this.getAge(),this.getPhone(),this.getAddress());
-    this.serviceStudent.addStudent(stu).subscribe(
-      response => {
-        this.router.navigateByUrl('/students');
-      }
-    )
+    const stu = new Student(this.id,this.getUserName(),this.getGender(),this.getAge(),this.getPhone(),this.getAddress());
+    if(this.id == 0){
+      this.serviceStudent.addStudent(stu).subscribe(
+        response => {
+          this.router.navigateByUrl('/students');
+        }
+      )
+    } else {
+      this.serviceStudent.editStudent(stu,this.id).subscribe(
+        response => {
+          this.router.navigateByUrl('/students');
+        }
+      )
+    }
+
     console.log(this.getUserName())
     console.log(this.getAge())
     console.log(this.getAddress())
