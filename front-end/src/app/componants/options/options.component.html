@@ -1,6 +1,6 @@
 <form [formGroup]="studentGroub" (ngSubmit)="done()">
   <div formGroupName="student">
-
+<div *ngIf="invalidFullName" class="alert alert-danger">{{invalidFullName}}</div>
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>

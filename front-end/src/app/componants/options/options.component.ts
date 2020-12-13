@@ -12,6 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class OptionsComponent implements OnInit {
 
   studentGroub: FormGroup;
+  invalidFullName: String;
   id: number;
   myStudent: Student = new Student(0,"","","","","");
 
@@ -57,6 +58,10 @@ export class OptionsComponent implements OnInit {
       this.serviceStudent.addStudent(stu).subscribe(
         response => {
           this.router.navigateByUrl('/students');
+        },
+        error => {
+          this.invalidFullName = "Full Name alerdy Exist";
+          this.showMessage()
         }
       )
     } else {
@@ -67,11 +72,10 @@ export class OptionsComponent implements OnInit {
       )
     }
 
-    console.log(this.getUserName())
-    console.log(this.getAge())
-    console.log(this.getAddress())
-    console.log(this.getPhone())
-    console.log(this.getGender())
-
+  }
+  showMessage(){
+    setTimeout(() => {
+      this.invalidFullName = ""
+    },3000)
   }
 }
