@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Router, Routes} from '@angular/router';
+import validate = WebAssembly.validate;
 @Component({
   selector: 'app-regiser',
   templateUrl: './regiser.component.html',
@@ -19,19 +20,31 @@ export class RegiserComponent implements OnInit {
   ngOnInit(): void {
     this.logInFormGroup = this.formBuilder.group({
       admin: this.formBuilder.group({
-        userName: [''],
-        password: ['']
+        userName: new FormControl('',[Validators.required,Validators.minLength(5)]),
+        password: new FormControl('',[Validators.required,Validators.minLength(5)])
       })
     })
   }
+
+  get userName(){
+    return this.logInFormGroup.get('admin.userName')
+  }
+  get password(){
+    return this.logInFormGroup.get('admin.password')
+  }
   OnSubmit() {
-    const result = this.loginService.login(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
-    if(result == true){
-      this.route.navigateByUrl('students');
+    if(this.logInFormGroup.invalid){
+      this.logInFormGroup.markAllAsTouched();
     } else {
-      this.invalidMessage = 'Invalid UserName and Password';
-      this.showMessage()
+      const result = this.loginService.login(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
+      if(result == true){
+        this.route.navigateByUrl('students');
+      } else {
+        this.invalidMessage = 'Invalid UserName and Password';
+        this.showMessage()
+      }
     }
+
   }
   showMessage(){
     setTimeout(() => {
