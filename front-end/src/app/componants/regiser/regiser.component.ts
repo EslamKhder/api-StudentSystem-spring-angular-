@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Router, Routes} from '@angular/router';
 @Component({
@@ -10,6 +10,7 @@ import {Router, Routes} from '@angular/router';
 export class RegiserComponent implements OnInit {
 
   logInFormGroup: FormGroup;
+  invalidMessage: string;
 
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
@@ -21,10 +22,20 @@ export class RegiserComponent implements OnInit {
         userName: [''],
         password: ['']
       })
-    });
+    })
   }
   OnSubmit() {
-    this.loginService.login(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
-    this.route.navigateByUrl('students');
+    const result = this.loginService.login(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
+    if(result == true){
+      this.route.navigateByUrl('students');
+    } else {
+      this.invalidMessage = 'Invalid UserName and Password';
+      this.showMessage()
+    }
+  }
+  showMessage(){
+    setTimeout(() => {
+      this.invalidMessage = ""
+    },3000)
   }
 }

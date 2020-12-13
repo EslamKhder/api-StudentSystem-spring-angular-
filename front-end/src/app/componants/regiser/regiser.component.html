@@ -1,10 +1,15 @@
 <form [formGroup]="logInFormGroup" (ngSubmit)="OnSubmit()">
+  <div *ngIf="invalidMessage" class="alert alert-danger">{{invalidMessage}}</div>
   <div formGroupName="admin">
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="userName"  type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+      <input formControlName="userName"  type="text" class="form-control" placeholder="userName" aria-label="userName" aria-describedby="addon-wrapping">
+      <div>
+
+      </div>
     </div>
+
 
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
@@ -13,6 +18,7 @@
     </div>
   </div>
     <div>
-      <button class="btn btn-primary"> Log In</button>
+      <button class="btn btn-primary"> Log In </button>
     </div>
 </form>
+
