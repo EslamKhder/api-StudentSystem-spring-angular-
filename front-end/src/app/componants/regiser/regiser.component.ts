@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Router, Routes} from '@angular/router';
 import validate = WebAssembly.validate;
+import {Spacevalidator} from '../../model/spacevalidator';
 @Component({
   selector: 'app-regiser',
   templateUrl: './regiser.component.html',
@@ -20,7 +21,7 @@ export class RegiserComponent implements OnInit {
   ngOnInit(): void {
     this.logInFormGroup = this.formBuilder.group({
       admin: this.formBuilder.group({
-        userName: new FormControl('',[Validators.required,Validators.minLength(5)]),
+        userName: new FormControl('',[Validators.required,Validators.minLength(5),Spacevalidator.noOnlyWithSpace]),
         password: new FormControl('',[Validators.required,Validators.minLength(5)])
       })
     })
