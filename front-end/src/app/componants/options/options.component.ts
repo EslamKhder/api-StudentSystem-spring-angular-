@@ -23,8 +23,15 @@ export class OptionsComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get('id');
     if(this.id != 0){
       this.serviceStudent.getStudent(this.id).subscribe(
-        response =>
-          this.myStudent = response
+        response => {
+          this.myStudent = response,
+          this.studentGroub.get("student.userName").patchValue(response.fullName),
+          this.studentGroub.get("student.age").patchValue(response.age),
+          this.studentGroub.get("student.address").patchValue(response.address),
+          this.studentGroub.get("student.phone").patchValue(response.phone),
+          this.studentGroub.get("student.gender").patchValue(response.gender)
+
+        }
       )
     }
     this.studentGroub = this.formBuilder.group({
@@ -33,7 +40,7 @@ export class OptionsComponent implements OnInit {
         age: [''],
         address: [''],
         phone: [''],
-        gender: ['']
+        gender: ['MALE']
       })
     })
   }
