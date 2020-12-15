@@ -34,8 +34,7 @@ export class StudentsComponent implements OnInit {
   }
   getStudentByName(name: String){
     this.studentService.getStudentByName(name).subscribe(
-      data => {this.students = data,
-      alert(data[0].fullName)}
+      data => this.students = data
     );
   }
   removeStudent(id: number){
