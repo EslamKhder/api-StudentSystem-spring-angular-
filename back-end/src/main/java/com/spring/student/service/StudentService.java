@@ -4,11 +4,9 @@ import com.spring.student.doa.StudentRepository;
 import com.spring.student.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -33,5 +31,8 @@ public class StudentService {
     }
     public void removeStudent(@RequestParam Long id){
         studentRepository.deleteById(id);
+    }
+    public List<Student> findByFullName(String fullname){
+        return this.studentRepository.findByFullName(fullname);
     }
 }

@@ -1,13 +1,10 @@
 package com.spring.student.controller;
 
 import com.spring.student.model.Student;
-import com.spring.student.model.enums.Gender;
 import com.spring.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -49,5 +46,11 @@ public class StudentController {
     @DeleteMapping("students")
     public void removeStudent(@RequestParam Long id){
         studentService.removeStudent(id);
+    }
+
+   // http://localhost:8080/system/students/searchname?fullname=Eslam Khder
+    @GetMapping("students/searchname")
+    public List<Student> findByFullName(@RequestParam String fullname){
+        return this.studentService.findByFullName(fullname);
     }
 }
