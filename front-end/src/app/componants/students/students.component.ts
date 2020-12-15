@@ -16,14 +16,15 @@ export class StudentsComponent implements OnInit {
   constructor(private studentService: StudentService,private route: ActivatedRoute) {
   }
   ngOnInit(): void {
+    this.route.paramMap.subscribe(() =>{
       const result = this.route.snapshot.paramMap.has("name");
       if (result == true) {
         const name = this.route.snapshot.paramMap.get("name");
-        this.getStudentByName(name);
+        this.getStudentByName(name)
       } else {
         this.getStudents();
       }
-
+    });
   }
 
   getStudents(){
@@ -33,7 +34,8 @@ export class StudentsComponent implements OnInit {
   }
   getStudentByName(name: String){
     this.studentService.getStudentByName(name).subscribe(
-      data => this.students = data
+      data => {this.students = data,
+      alert(data[0].fullName)}
     );
   }
   removeStudent(id: number){
