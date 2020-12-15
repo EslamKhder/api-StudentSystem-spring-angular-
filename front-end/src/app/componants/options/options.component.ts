@@ -39,7 +39,7 @@ export class OptionsComponent implements OnInit {
         userName: new FormControl('',[Validators.required,Validators.minLength(5),Spacevalidator.noOnlyWithSpace]),
         age: new FormControl('',[Validators.required,Validators.maxLength(2),Validators.pattern("^[0-9]*$"),Spacevalidator.noOnlyWithSpace]),
         address: new FormControl('',[Validators.required]),
-        phone: new FormControl('',[Validators.required,Validators.maxLength(11),Validators.pattern("^[0-9]*$"),Spacevalidator.noOnlyWithSpace]),
+        phone: new FormControl('',[Validators.required,Validators.maxLength(11),Validators.minLength(11),Validators.pattern("^[0-9]*$"),Spacevalidator.noOnlyWithSpace]),
         gender: ['MALE']
       })
     })
@@ -77,23 +77,28 @@ export class OptionsComponent implements OnInit {
   }
   done() {
     const stu = new Student(this.id,this.getUserName(),this.getGender(),this.getAge(),this.getPhone(),this.getAddress());
-    if(this.id == 0){
-      this.serviceStudent.addStudent(stu).subscribe(
-        response => {
-          this.router.navigateByUrl('/students');
-        },
-        error => {
-          this.invalidFullName = "Full Name alerdy Exist";
-          this.showMessage()
-        }
-      )
+    if(this.studentGroub.invalid){
+      this.studentGroub.markAllAsTouched();
     } else {
-      this.serviceStudent.editStudent(stu,this.id).subscribe(
-        response => {
-          this.router.navigateByUrl('/students');
-        }
-      )
+      if(this.id == 0){
+        this.serviceStudent.addStudent(stu).subscribe(
+          response => {
+            this.router.navigateByUrl('/students');
+          },
+          error => {
+            this.invalidFullName = "Full Name alerdy Exist";
+            this.showMessage()
+          }
+        )
+      } else {
+        this.serviceStudent.editStudent(stu,this.id).subscribe(
+          response => {
+            this.router.navigateByUrl('/students');
+          }
+        )
+      }
     }
+
 
   }
   showMessage(){
