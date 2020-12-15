@@ -13,14 +13,26 @@ export class StudentsComponent implements OnInit {
   students: Student[];
   message: String;
 
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService,private route: ActivatedRoute) {
   }
   ngOnInit(): void {
-      this.getStudents();
+      const result = this.route.snapshot.paramMap.has("name");
+      if (result == true) {
+        const name = this.route.snapshot.paramMap.get("name");
+        this.getStudentByName(name);
+      } else {
+        this.getStudents();
+      }
+
   }
 
   getStudents(){
     this.studentService.getStudents().subscribe(
+      data => this.students = data
+    );
+  }
+  getStudentByName(name: String){
+    this.studentService.getStudentByName(name).subscribe(
       data => this.students = data
     );
   }

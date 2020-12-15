@@ -24,4 +24,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  done(name: String) {
+    this.route.navigateByUrl(`students/${name}`)
+  }
 }
