@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Student} from '../../model/student';
 import {StudentService} from '../../services/student.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Spacevalidator} from '../../model/spacevalidator';
 
 @Component({
   selector: 'app-options',
@@ -35,10 +36,10 @@ export class OptionsComponent implements OnInit {
     }
     this.studentGroub = this.formBuilder.group({
       student: this.formBuilder.group({
-        userName: new FormControl('',[Validators.required,Validators.minLength(5)]),
-        age: new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern("^[0-9]")]),
+        userName: new FormControl('',[Validators.required,Validators.minLength(5),Spacevalidator.noOnlyWithSpace]),
+        age: new FormControl('',[Validators.required,Validators.maxLength(2),Validators.pattern("^[0-9]*$"),Spacevalidator.noOnlyWithSpace]),
         address: new FormControl('',[Validators.required]),
-        phone: new FormControl('',[Validators.required,Validators.minLength(11),Validators.pattern("^[0-9]")]),
+        phone: new FormControl('',[Validators.required,Validators.maxLength(11),Validators.pattern("^[0-9]*$"),Spacevalidator.noOnlyWithSpace]),
         gender: ['MALE']
       })
     })
@@ -57,6 +58,22 @@ export class OptionsComponent implements OnInit {
   }
   getGender() {
     return this.studentGroub.get("student").value.gender;
+  }
+
+  get userName() {
+    return this.studentGroub.get("student.userName");
+  }
+  get age() {
+    return this.studentGroub.get("student.age");
+  }
+  get address() {
+    return this.studentGroub.get("student.address");
+  }
+  get phone() {
+    return this.studentGroub.get("student.phone");
+  }
+  get gender() {
+    return this.studentGroub.get("student.gender");
   }
   done() {
     const stu = new Student(this.id,this.getUserName(),this.getGender(),this.getAge(),this.getPhone(),this.getAddress());
