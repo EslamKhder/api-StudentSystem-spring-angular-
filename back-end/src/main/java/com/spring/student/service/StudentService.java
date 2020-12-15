@@ -33,6 +33,6 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
     public List<Student> findByFullName(String fullname){
-        return this.studentRepository.findByFullName(fullname);
+        return this.studentRepository.findByFullNameContaining(fullname);
     }
 }

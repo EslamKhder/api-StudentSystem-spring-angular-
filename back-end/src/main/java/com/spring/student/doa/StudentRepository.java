@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student,Long> {
-    public List<Student> findByFullName(String fullname);
+    public List<Student> findByFullNameContaining(String fullname);
 }
