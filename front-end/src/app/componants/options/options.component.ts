@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Student} from '../../model/student';
 import {StudentService} from '../../services/student.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -30,16 +30,15 @@ export class OptionsComponent implements OnInit {
           this.studentGroub.get("student.address").patchValue(response.address),
           this.studentGroub.get("student.phone").patchValue(response.phone),
           this.studentGroub.get("student.gender").patchValue(response.gender)
-
         }
       )
     }
     this.studentGroub = this.formBuilder.group({
       student: this.formBuilder.group({
-        userName: [''],
-        age: [''],
-        address: [''],
-        phone: [''],
+        userName: new FormControl('',[Validators.required,Validators.minLength(5)]),
+        age: new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern("^[0-9]")]),
+        address: new FormControl('',[Validators.required]),
+        phone: new FormControl('',[Validators.required,Validators.minLength(11),Validators.pattern("^[0-9]")]),
         gender: ['MALE']
       })
     })

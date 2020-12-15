@@ -1,6 +1,7 @@
 package com.spring.student.controller;
 
 import com.spring.student.model.Student;
+import com.spring.student.model.enums.Gender;
 import com.spring.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
