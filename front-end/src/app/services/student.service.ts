@@ -13,8 +13,8 @@ export class StudentService {
   private urlStudents = 'http://localhost:8080/system/students';
   constructor(private httpStudent: HttpClient) { }
 
-  getStudents(): Observable<Student[]> {
-    return this.httpStudent.get<Student[]>(this.urlStudents).pipe(
+  getStudents(numPage,numSize): Observable<Student[]> {
+    return this.httpStudent.get<Student[]>(this.urlStudents+`?page=${numPage}&size=${numSize}`).pipe(
       map(response => response)
     );
   }
@@ -35,6 +35,12 @@ export class StudentService {
   }
   getStudentByName(name: String): Observable<Student[]>{
     return this.httpStudent.get<Student[]>(this.urlStudents + `/searchname?fullname=${name}`).pipe(
+      map(response => response)
+    )
+  }
+
+  getLength(): Observable<number>{
+    return this.httpStudent.get<number>(this.urlStudents + `/length`).pipe(
       map(response => response)
     )
   }

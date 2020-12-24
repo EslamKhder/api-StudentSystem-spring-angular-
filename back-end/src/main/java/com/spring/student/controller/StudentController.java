@@ -20,8 +20,8 @@ public class StudentController {
 
     // http://localhost:8080/system/students
     @GetMapping("students")
-    public List<Student> getStudents(){
-        return studentService.getStudents();
+    public List<Student> getStudents(@RequestParam int page, @RequestParam int size){
+        return studentService.getStudents(page,size);
     }
 
     // http://localhost:8080/system/student?id=12
@@ -42,7 +42,6 @@ public class StudentController {
         student.setId(id);
         return studentService.saveStudent(student);
     }
-
     @DeleteMapping("students")
     public void removeStudent(@RequestParam Long id){
         studentService.removeStudent(id);
@@ -52,5 +51,10 @@ public class StudentController {
     @GetMapping("students/searchname")
     public List<Student> findByFullName(@RequestParam String fullname){
         return this.studentService.findByFullName(fullname);
+    }
+
+    @GetMapping("students/length")
+    public Long getStudentSize(){
+        return this.studentService.getStudentSize();
     }
 }

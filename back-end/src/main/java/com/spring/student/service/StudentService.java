@@ -3,6 +3,8 @@ package com.spring.student.service;
 import com.spring.student.doa.StudentRepository;
 import com.spring.student.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,8 +19,9 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> getStudents(){
-        return studentRepository.findAll();
+    public List<Student> getStudents(int page,int size){
+        Pageable pageable = PageRequest.of(page, size);
+        return studentRepository.findAll(pageable).getContent();
     }
     public Student getStudentById (Long id){
         return studentRepository.findById(id).get();
@@ -34,5 +37,8 @@ public class StudentService {
     }
     public List<Student> findByFullName(String fullname){
         return this.studentRepository.findByFullNameContaining(fullname);
+    }
+    public Long getStudentSize(){
+        return this.studentRepository.getStudentSize();
     }
 }
