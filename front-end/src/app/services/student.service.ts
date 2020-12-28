@@ -13,12 +13,8 @@ export class StudentService {
   private urlStudents = 'http://localhost:8080/system/students';
   constructor(private httpStudent: HttpClient) { }
 
-  getStudents(numPage,numSize): Observable<Student[]> {
-    let header = new HttpHeaders({
-      Authorization: this.createBasicAuthenticationHttpHeader()
-    })
-    return this.httpStudent.get<Student[]>(this.urlStudents+`?page=${numPage}&size=${numSize}`,
-      {headers: header}).pipe(
+  getStudents(): Observable<Student[]> {
+    return this.httpStudent.get<Student[]>(this.urlStudents).pipe(
       map(response => response)
     );
   }
@@ -41,18 +37,6 @@ export class StudentService {
     return this.httpStudent.get<Student[]>(this.urlStudents + `/searchname?fullname=${name}`).pipe(
       map(response => response)
     )
-  }
-
-  getLength(): Observable<number>{
-    return this.httpStudent.get<number>(this.urlStudents + `/length`).pipe(
-      map(response => response)
-    )
-  }
-  createBasicAuthenticationHttpHeader(){
-    let user = `eslam`;
-    let password = `eslam`;
-    let basicAuthHeaderString = `Basic ` + window.btoa(user + `:` + password);
-    return basicAuthHeaderString;
   }
 }
 /*

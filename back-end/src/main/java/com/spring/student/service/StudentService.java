@@ -20,7 +20,7 @@ public class StudentService {
     }
 
     public List<Student> getStudents(int page,int size){
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page,size);
         return studentRepository.findAll(pageable).getContent();
     }
     public Student getStudentById (Long id){
@@ -37,8 +37,5 @@ public class StudentService {
     }
     public List<Student> findByFullName(String fullname){
         return this.studentRepository.findByFullNameContaining(fullname);
-    }
-    public Long getStudentSize(){
-        return this.studentRepository.getStudentSize();
     }
 }

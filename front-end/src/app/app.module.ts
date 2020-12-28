@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componants/header/header.component';
 import { FooterComponent } from './componants/footer/footer.component';
 import { RegiserComponent } from './componants/regiser/regiser.component';
+import { StudentsComponent } from './componants/students/students.component';
 import { OptionsComponent } from './componants/options/options.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
@@ -11,9 +13,6 @@ import {RouteActivatedService} from './services/route-activated-service.service'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ContentComponent } from './componants/content/content.component';
 import {LoginActivatedService} from './services/login-activated.service';
-import {StudentsComponent} from './componants/students/students.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgModule} from '@angular/core';
 
 const routes: Routes = [
   {path: 'register', component: RegiserComponent,canActivate: [LoginActivatedService]},
@@ -41,8 +40,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    NgbModule
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
