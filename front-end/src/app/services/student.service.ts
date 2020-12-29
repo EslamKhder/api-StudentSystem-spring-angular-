@@ -38,6 +38,11 @@ export class StudentService {
       map(response => response)
     )
   }
+  getStudentsSize(): Observable<number> {
+    return this.httpStudent.get<number>(this.urlStudents + `/length`).pipe(
+      map(response => response)
+    );
+  }
 }
 /*
 interface GetResponseStudent {
