@@ -12,9 +12,9 @@ export class StudentsComponent implements OnInit {
 
   students: Student[] = [];
   message: String;
-  page: number = 3; // 0 1
-  size: number = 1;
-  numElement: number = 4;
+  page: number = 1; // 0 1 2 3
+  size: number = 2;
+  numElement: number = 5;
 
   constructor(private studentService: StudentService,private route: ActivatedRoute) {
   }
@@ -31,7 +31,7 @@ export class StudentsComponent implements OnInit {
   }
 
   getStudents(){
-    this.studentService.getStudents(this.page,this.size).subscribe(
+    this.studentService.getStudents(this.page - 1,this.size).subscribe(
       data => this.students = data
     );
   }
@@ -56,4 +56,7 @@ export class StudentsComponent implements OnInit {
     },3000)
   }
 
+  done() {
+    this.getStudents();
+  }
 }

@@ -23,10 +23,19 @@
       <button class="btn btn-success" routerLink="/control/{{stus.id}}">UpDate</button>
       <button class="btn btn-primary" (click)="removeStudent(stus.id)">Delete</button>
     </td>
-
   </tr>
   </tbody>
 </table>
 <div *ngIf="students?.length == 0" class="alert alert-danger">No Data</div>
-
+<div class="col-md-8">
+  <div class="row">
+    <div class="col-md-9" style="padding-left: 30%">
+        <ngb-pagination [(page)]="page"
+                        [pageSize]="size"
+                        [collectionSize]="numElement"
+                        (pageChange)="done()">
+        </ngb-pagination>
+    </div>
+  </div>
+</div>
 <button class="btn btn-danger" routerLink="/control">Add</button>
