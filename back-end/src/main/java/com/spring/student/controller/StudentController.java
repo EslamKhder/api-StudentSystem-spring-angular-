@@ -53,4 +53,8 @@ public class StudentController {
     public List<Student> findByFullName(@RequestParam String fullname){
         return this.studentService.findByFullName(fullname);
     }
+    @GetMapping("students/length")
+    public Long getStudentsLength(){
+        return this.studentService.getStudentsLength();
+    }
 }
