@@ -10,8 +10,16 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student,Long> {
+
+    public List<Student> findByFullNameContaining(String fullname);
+
     public List<Student> findByFullNameContaining(String fullname,Pageable pageable);
 
     @Query("select COUNT(id) from student")
     public Long getStudentsLength();
+
+    //@Query("select * from student where fullName = ?1")
+    //public Long getStudentsLengthByName(String name);
+
+
 }

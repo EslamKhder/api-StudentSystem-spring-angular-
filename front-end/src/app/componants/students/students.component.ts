@@ -69,11 +69,7 @@ export class StudentsComponent implements OnInit {
   }
 
   done() {
-    const result = this.route.snapshot.paramMap.has("name");
-    if (result == true) {
-      this.getStudentByName()
-    } else {
+      //this.getStudentByName()
       this.getStudents();
-    }
   }
 }
