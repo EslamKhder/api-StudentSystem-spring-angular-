@@ -33,8 +33,8 @@ export class StudentService {
   editStudent(student: Student,id: number){
     return this.httpStudent.put(this.urlStudents + `?id=${id}` , student);
   }
-  getStudentByName(name: String): Observable<Student[]>{
-    return this.httpStudent.get<Student[]>(this.urlStudents + `/searchname?fullname=${name}`).pipe(
+  getStudentByName(name: String,page: number,size: number): Observable<Student[]>{
+    return this.httpStudent.get<Student[]>(this.urlStudents + `/searchname?fullname=${name}&page=${page}&size=${size}`).pipe(
       map(response => response)
     )
   }

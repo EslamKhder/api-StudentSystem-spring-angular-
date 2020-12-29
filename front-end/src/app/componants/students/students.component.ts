@@ -15,6 +15,7 @@ export class StudentsComponent implements OnInit {
   page: number = 1; // 0 1 2 3
   size: number = 1;
   numElement: number;
+  fullname: String = "";
 
   constructor(private studentService: StudentService,private route: ActivatedRoute) {
   }
@@ -22,8 +23,8 @@ export class StudentsComponent implements OnInit {
     this.route.paramMap.subscribe(() =>{
       const result = this.route.snapshot.paramMap.has("name");
       if (result == true) {
-        const name = this.route.snapshot.paramMap.get("name");
-        this.getStudentByName(name)
+        this.fullname = this.route.snapshot.paramMap.get("name");
+        this.getStudentByName()
       } else {
         this.getStudents();
       }
@@ -44,9 +45,11 @@ export class StudentsComponent implements OnInit {
        data => this.numElement = data
     );
   }
-  getStudentByName(name: String){
-    this.studentService.getStudentByName(name).subscribe(
-      data => this.students = data
+  getStudentByName(){ // ah
+    this.studentService.getStudentByName(this.fullname,this.page - 1,this.size).subscribe(
+      data => {
+        this.students = data
+      }
     );
   }
   removeStudent(id: number){
@@ -66,6 +69,11 @@ export class StudentsComponent implements OnInit {
   }
 
   done() {
-    this.getStudents();
+    const result = this.route.snapshot.paramMap.has("name");
+    if (result == true) {
+      this.getStudentByName()
+    } else {
+      this.getStudents();
+    }
   }
 }
