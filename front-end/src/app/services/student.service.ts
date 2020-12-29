@@ -13,8 +13,8 @@ export class StudentService {
   private urlStudents = 'http://localhost:8080/system/students';
   constructor(private httpStudent: HttpClient) { }
 
-  getStudents(): Observable<Student[]> {
-    return this.httpStudent.get<Student[]>(this.urlStudents).pipe(
+  getStudents(page,size): Observable<Student[]> {
+    return this.httpStudent.get<Student[]>(this.urlStudents + `?page=${page}&size=${size}`).pipe(
       map(response => response)
     );
   }
