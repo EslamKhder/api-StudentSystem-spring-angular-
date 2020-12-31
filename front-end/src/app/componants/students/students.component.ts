@@ -13,7 +13,7 @@ export class StudentsComponent implements OnInit {
   students: Student[] = [];
   message: String;
   page: number = 1; // 0 1 2 3
-  size: number = 1;
+  size: number = 3;
   numElement: number;
   fullname: string = "";
 
@@ -81,5 +81,9 @@ export class StudentsComponent implements OnInit {
     } else {
       this.getStudents();
     }
+  }
+
+  updatePageSize(event) {
+    this.numElement = event.target.value;
   }
 }
