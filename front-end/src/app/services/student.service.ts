@@ -42,7 +42,10 @@ export class StudentService {
     )
   }
   getStudentsSize(): Observable<number> {
-    return this.httpStudent.get<number>(this.urlStudents + `/length`).pipe(
+    let header = new HttpHeaders({
+      Authorization: this.createBasicAuthenticationHttpHeader()
+    })
+    return this.httpStudent.get<number>(this.urlStudents + `/length`,{headers: header}).pipe(
       map(response => response)
     );
   }

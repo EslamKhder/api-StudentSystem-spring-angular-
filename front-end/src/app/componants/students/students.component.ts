@@ -83,7 +83,4 @@ export class StudentsComponent implements OnInit {
     }
   }
 
-  updatePageSize(event) {
-    this.numElement = event.target.value;
-  }
 }
