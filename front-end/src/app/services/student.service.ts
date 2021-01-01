@@ -14,10 +14,8 @@ export class StudentService {
   constructor(private httpStudent: HttpClient) { }
 
   getStudents(page,size): Observable<Student[]> {
-    let header = new HttpHeaders({
-      Authorization: this.createBasicAuthenticationHttpHeader()
-    })
-    return this.httpStudent.get<Student[]>(this.urlStudents + `?page=${page}&size=${size}`,{headers : header}).pipe(
+
+    return this.httpStudent.get<Student[]>(this.urlStudents + `?page=${page}&size=${size}`).pipe(
       map(response => response)
     );
   }
@@ -42,10 +40,7 @@ export class StudentService {
     )
   }
   getStudentsSize(): Observable<number> {
-    let header = new HttpHeaders({
-      Authorization: this.createBasicAuthenticationHttpHeader()
-    })
-    return this.httpStudent.get<number>(this.urlStudents + `/length`,{headers: header}).pipe(
+    return this.httpStudent.get<number>(this.urlStudents + `/length`).pipe(
       map(response => response)
     );
   }
@@ -53,12 +48,6 @@ export class StudentService {
     return this.httpStudent.get<number>(this.urlStudents + `/lengthname?name=${name}`).pipe(
       map(response => response)
     );
-  }
-  createBasicAuthenticationHttpHeader() {
-    let userName = `eslam`;
-    let password = `eslam`;
-    let basicAuthHeaderString = `Basic ` + window.btoa(userName + `:` + password); // 64
-    return basicAuthHeaderString;
   }
 }
 /*
