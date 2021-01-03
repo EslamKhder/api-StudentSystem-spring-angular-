@@ -4,6 +4,7 @@ import {LoginService} from '../../services/login.service';
 import {Router, Routes} from '@angular/router';
 import validate = WebAssembly.validate;
 import {Spacevalidator} from '../../model/spacevalidator';
+import {AuthenticationService} from "../../services/authentication.service";
 @Component({
   selector: 'app-regiser',
   templateUrl: './regiser.component.html',
@@ -15,7 +16,8 @@ export class RegiserComponent implements OnInit {
   invalidMessage: string;
 
   constructor(private formBuilder: FormBuilder,
-              private loginService: LoginService,
+              //private loginService: LoginService,
+              private auth: AuthenticationService,
               private route: Router) { }
 
   ngOnInit(): void {
@@ -37,13 +39,24 @@ export class RegiserComponent implements OnInit {
     if(this.logInFormGroup.invalid){
       this.logInFormGroup.markAllAsTouched();
     } else {
-      const result = this.loginService.login(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
+      /*const result = this.loginService.login(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
       if(result == true){
         this.route.navigateByUrl('students');
       } else {
         this.invalidMessage = 'Invalid UserName and Password';
         this.showMessage()
       }
+       */
+      this.auth.executeAuthentication(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
+        .subscribe(
+          data => {
+            console.log(data)
+            this.route.navigateByUrl('students');
+          }, error => {
+            this.invalidMessage = 'Invalid UserName and Password';
+            this.showMessage()
+          }
+        )
     }
 
   }
