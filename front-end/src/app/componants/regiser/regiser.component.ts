@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {LoginService} from '../../services/login.service';
 import {Router, Routes} from '@angular/router';
-import validate = WebAssembly.validate;
 import {Spacevalidator} from '../../model/spacevalidator';
 import {AuthenticationService} from "../../services/authentication.service";
 @Component({
@@ -49,7 +47,6 @@ export class RegiserComponent implements OnInit {
           }
         )
     }
-
   }
   showMessage(){
     setTimeout(() => {
