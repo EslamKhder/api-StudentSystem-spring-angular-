@@ -50,7 +50,7 @@ export class RegiserComponent implements OnInit {
       this.auth.executeAuthentication(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
         .subscribe(
           data => {
-            console.log(data)
+            console.log(data.message)
             this.route.navigateByUrl('students');
           }, error => {
             this.invalidMessage = 'Invalid UserName and Password';

@@ -1,6 +1,7 @@
 package com.spring.student.controller;
 
 
+import com.spring.student.model.AuthenticationBean;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BasicAuthenticationController {
 
     @GetMapping("/basicauth")
-    public String BasicAuthentication(){
-        return "you are Authentication";
+    public AuthenticationBean BasicAuthentication(){
+        return new AuthenticationBean("you are Authentication");
     }
 }
