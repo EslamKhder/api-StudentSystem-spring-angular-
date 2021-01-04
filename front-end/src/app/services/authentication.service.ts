@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {map} from "rxjs/operators";
-import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +19,19 @@ export class AuthenticationService {
       map(
         response => {
           sessionStorage.setItem("isRegister",username);
+          sessionStorage.setItem("token",basicAuthHeaderString);
           return response;
         }
       )
     );
+  }
+  getAuthentication(){
+    return sessionStorage.getItem("isRegister");
+  }
+  getToken(){
+    if(this.getAuthentication()){
+      return sessionStorage.getItem("token");
+    }
   }
 }
 export class AuthenticationBean{

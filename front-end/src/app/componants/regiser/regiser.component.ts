@@ -39,18 +39,9 @@ export class RegiserComponent implements OnInit {
     if(this.logInFormGroup.invalid){
       this.logInFormGroup.markAllAsTouched();
     } else {
-      /*const result = this.loginService.login(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
-      if(result == true){
-        this.route.navigateByUrl('students');
-      } else {
-        this.invalidMessage = 'Invalid UserName and Password';
-        this.showMessage()
-      }
-       */
       this.auth.executeAuthentication(this.logInFormGroup.get('admin').value.userName,this.logInFormGroup.get('admin').value.password)
         .subscribe(
           data => {
-            console.log(data.message)
             this.route.navigateByUrl('students');
           }, error => {
             this.invalidMessage = 'Invalid UserName and Password';
