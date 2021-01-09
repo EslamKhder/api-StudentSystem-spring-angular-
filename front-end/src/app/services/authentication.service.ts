@@ -12,7 +12,6 @@ export class AuthenticationService {
 
   executeAuthentication(username,password){
     let basicAuthHeaderString = `Basic ` + window.btoa(username + `:` + password); // 64
-
     let header = new HttpHeaders({
       Authorization: basicAuthHeaderString
     })
