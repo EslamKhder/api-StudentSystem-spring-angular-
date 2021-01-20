@@ -44,7 +44,5 @@ public class Student {
     @Column(name = "date_updated")
     private Date dateUpdated;
 
-    @OneToMany (mappedBy = "account",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    List<Account> users = new ArrayList<>();
 
 }
