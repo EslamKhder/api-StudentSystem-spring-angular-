@@ -10,20 +10,15 @@ export class AuthenticationService {
 
   constructor(private httpStudent: HttpClient) { }
 
-  executeAuthentication(username: string,password: string){
+  executeAuthentication(username,password){
     let basicAuthHeaderString = `Basic ` + window.btoa(username + `:` + password); // 64
     let header = new HttpHeaders({
       Authorization: basicAuthHeaderString
     })
-    //var head = new Headers({'Content-Type': 'application/json'});
-    //const head = new HttpHeaders().set('Content-Type','application/json');
-    //var user: AuthenticationBean = new AuthenticationBean(username,password);
-    return this.httpStudent.post<any>("http://localhost:8080/login",{username,password}).pipe(
+    return this.httpStudent.get<AuthenticationBean>(`${API_URL}/basicauth`,{headers : header}).pipe(
       map(
         response => {
-          alert("done")
           sessionStorage.setItem(`${AUTHENTICATION}`,username);
-          //sessionStorage.setItem(`${TOKEN}`,"Bearer " + response.headers.get('Authorization'));
           sessionStorage.setItem(`${TOKEN}`,basicAuthHeaderString);
           return response;
         }
@@ -45,16 +40,6 @@ export class AuthenticationService {
   logOut(){
     sessionStorage.removeItem(`${AUTHENTICATION}`);
     sessionStorage.removeItem(`${TOKEN}`);
-  }
-}
-
-export class login{
-  username: string;
-  password: string;
-
-  constructor(username: string, password: string) {
-    this.username = username;
-    this.password = password;
   }
 }
 export class AuthenticationBean{
