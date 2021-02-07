@@ -17,6 +17,7 @@ public class Login {
 
     @PostMapping("signin")
     public String login(@RequestBody JwtLogin loginUser){
+        System.out.println(loginUser.getUsername());
         return tokenService.login(loginUser);
     }
 }

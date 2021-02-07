@@ -11,7 +11,16 @@ export class AuthenticationService {
   constructor(private httpStudent: HttpClient) { }
 
   executeAuthentication(username,password){
-    let basicAuthHeaderString = `Basic ` + window.btoa(username + `:` + password); // 64
+    return this.httpStudent.post<any>(`${API_URL}/signin`,{username,password}).pipe(
+      map(
+        response => {
+          sessionStorage.setItem(`${AUTHENTICATION}`,username);
+          sessionStorage.setItem(`${TOKEN}`,`Bearer ${response}`);
+          return response;
+        }
+      )
+    );
+    /*let basicAuthHeaderString = `Basic ` + window.btoa(username + `:` + password); // 64
     let header = new HttpHeaders({
       Authorization: basicAuthHeaderString
     })
@@ -23,7 +32,7 @@ export class AuthenticationService {
           return response;
         }
       )
-    );
+    );*/
   }
   getAuthentication(){
     return sessionStorage.getItem(`${AUTHENTICATION}`);

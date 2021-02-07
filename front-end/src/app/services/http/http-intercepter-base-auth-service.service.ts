@@ -10,7 +10,7 @@ export class HttpIntercepterBaseAuthServiceService implements HttpInterceptor{
 
   constructor(private auth: AuthenticationService) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {alert("dd")
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if(this.auth.getAuthentication() && this.auth.getToken()){
       request = request.clone({
         setHeaders: {
