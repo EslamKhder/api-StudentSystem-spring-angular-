@@ -16,7 +16,7 @@ export class AuthenticationService {
       map(
         response => {
           sessionStorage.setItem(`${AUTHENTICATION}`,username);
-          sessionStorage.setItem(`${TOKEN}`,`Bearer ${response}`);
+          sessionStorage.setItem(`${TOKEN}`,`Bearer ${response.token}`);
           return response;
         }
       )
@@ -52,6 +52,7 @@ export class AuthenticationService {
     sessionStorage.removeItem(`${TOKEN}`);
   }
 }
+/*
 export class AuthenticationBean{
 
   constructor(private _message: string) {
@@ -65,3 +66,4 @@ export class AuthenticationBean{
     this._message = value;
   }
 }
+*/
