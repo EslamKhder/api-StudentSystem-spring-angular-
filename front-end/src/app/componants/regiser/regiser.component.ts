@@ -42,7 +42,7 @@ export class RegiserComponent implements OnInit {
           data => {
             this.route.navigateByUrl('students');
           }, error => {
-            this.invalidMessage = 'Invalid UserName and Password' + error.toString();
+            this.invalidMessage = 'Invalid UserName and Password';
             this.showMessage()
           }
         )
