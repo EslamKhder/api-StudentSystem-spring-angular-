@@ -24,6 +24,12 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .withUser("eslam").password(passwordEncoder().encode("eslam")).roles("ADMIN");
     }
 
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

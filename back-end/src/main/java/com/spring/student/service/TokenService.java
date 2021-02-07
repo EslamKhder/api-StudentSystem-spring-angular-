@@ -3,9 +3,7 @@ package com.spring.student.service;
 
 import com.auth0.jwt.JWT;
 import com.spring.student.config.jwt.JwtProperties;
-import com.spring.student.model.LoginUser;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.spring.student.model.JwtLogin;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,14 +16,15 @@ import java.util.Date;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
 public class TokenService {
 
     private AuthenticationManager authenticationManager;
 
+    public TokenService(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
-    public String login(LoginUser loginUser){
+    public String login(JwtLogin loginUser){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginUser.getUsername(),loginUser.getPassword())
         );
